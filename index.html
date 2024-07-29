@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+
+    <style>
+        .box{
+            background-color: aliceblue;
+            width: 400px;
+            height: 500px;
+            padding: 10px;
+            margin: 10px;
+            border: 1.5px solid black;
+            border-radius: 15px;
+            overflow-y: auto;
+        }
+        h1{
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            word-spacing: 2px;
+            font-size: 50px;
+        }
+        #inputbox{
+            width:350px;
+            height: 50px;
+            border: 2px solid black;
+            border-radius: 30px;
+            font-size: 20px;
+            padding: 5px;
+            margin: 10px;
+        }
+
+        #inputbox:hover{
+            border: 2px solid greenyellow ;
+            box-shadow: 0px 0px 5px greenyellow;
+        }
+        #inputbox:active{
+            border: 2px solid greenyellow ;
+            box-shadow: 0px 0px 5px greenyellow;
+        }
+        li{
+        
+            display: inline-block;
+            word-spacing: 2px;
+            margin-left: 5px;
+            margin-right: 5px ;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            background-color:gray;
+            color:white;
+            border: 1px solid black;
+            font-size: 20px ;
+            padding: 5px;
+            z-index: -1;
+            width: 250px;
+            height: 30px;
+            border-radius: 25px;
+
+            
+            
+        }
+        li:hover{
+            background-color: greenyellow;
+            color:black;
+        }
+        button{
+            border-radius: 50%;
+            border: 1px solid black;
+            background-color: gray;
+            color: white;
+            font-size: 20px;
+            position: relative;
+            top: 8px;
+            padding: 5px;
+            width: 45px;
+            height: 45px;
+            margin:0px;
+
+        }
+        #list{
+            position:relative;
+            left:-50px;
+            
+        
+        }
+        .del{
+            border-radius: 50%;
+            border: 1px solid black;
+            background-color: gray;
+            color: white;
+            font-size: 20px;
+            position: relative;
+            right:-180px;
+            top:-45px;
+            padding: 5px;
+            width: 45px;
+            height: 45px;
+            margin: 0px;
+            
+
+        }
+        .del:hover{
+            background-color: red;
+            color: white;
+        }
+    
+    </style>
+</head>
+<body>
+    <center>
+        <div class="box">
+             
+             <h1>To Do List</h1>
+             <input type="text" placeholder="Enter here....." id="inputbox">
+             <ul id="list"><div class="box1"></div></ul>
+        </div>
+
+    </center>
+
+    <script>
+          var inputbox = document.querySelector('#inputbox');
+          var list = document.querySelector('#list');
+          
+          inputbox.addEventListener("keyup",function(event){
+            if(event.key == "Enter"){
+                additem(this.value)
+                    this.value = ''
+                
+            }
+          })
+
+          const additem = (inputbox) => {
+                
+                //creating three elements
+                //li = list item (when click the enter add list item)
+                let li = document.createElement('li');
+                let cheak = document.createElement('button');
+                let del = document.createElement('button');
+                let br = document.createElement('br');
+
+
+                
+
+                cheak.innerHTML= "<span>&#10003</span>";
+                del.innerHTML = "<span>&#10006</span>";
+                li.innerHTML =   inputbox  ;
+                console.log(inputbox);
+
+
+                list.appendChild(cheak);
+                list.appendChild(li);
+                list.appendChild(del);
+                list.appendChild(br); 
+                
+                del.setAttribute("class","del");
+
+                cheak.addEventListener("click",function(){
+                    cheak.style.backgroundColor = "greenyellow" ;
+                    cheak.style.color = "black";
+
+
+                })
+        
+
+                del.addEventListener("click",function(){
+                    list.removeChild(li);
+                    list.removeChild(del);
+                    list.removeChild(cheak);
+        
+                })
+
+
+          }
+    </script>
+</body>
+</html>
